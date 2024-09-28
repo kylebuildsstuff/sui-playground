@@ -39,6 +39,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@builders-of-stuff/svelte-sui-wallet-adapter": "^1.1.0",
     "bits-ui": "^0.21.15",
     "clsx": "^2.1.1",
     "svelte-radix": "^1.1.1",
