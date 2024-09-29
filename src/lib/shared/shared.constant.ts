@@ -1,0 +1,8 @@
+export const PACKAGE_ID =
+  '0xd14f74db7ad3536080a24475ecdc689a92ec04f7f93bcccae9fb61a78c6efc86';
+
+export const UPGRADE_CAP_ID =
+  '0x1ac7797e084fc02f6f226a0f83a0a001f714da983d28e50b3d57a378e3700c4c';
+
+export const HERO_ID =
+  '0xead03a625721e503e7130e643563d29d6b05264fc67a85f61d6e14590c48f00d';
