@@ -129,6 +129,27 @@
     console.log('object: ', object);
     return object;
   };
+
+  const battle = async () => {
+    const tx = new Transaction();
+
+    tx.moveCall({
+      target: `${PACKAGE_ID}::contracts::battle`,
+      arguments: [tx.object(HERO_ID)]
+    });
+
+    try {
+      const { bytes, signature } = await walletAdapter.signTransaction(tx as any, {});
+
+      const executedTx = await walletAdapter.executeTransaction({ bytes, signature });
+
+      console.log('executedTx: ', executedTx);
+
+      return executedTx;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 </script>
 
 <h1>Welcome to SvelteKit</h1>
@@ -140,3 +161,4 @@
 <Button onclick={getLevel}>Get level</Button>
 <Button onclick={getSomeVector}>Get some vector</Button>
 <Button onclick={() => getObject(HERO_ID)}>Get object</Button>
+<Button onclick={battle}>Battle</Button>
