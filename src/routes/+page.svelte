@@ -70,6 +70,48 @@
       console.log(error);
     }
   };
+
+  const getLevel = async () => {
+    const tx = new Transaction();
+
+    tx.moveCall({
+      target: `${PACKAGE_ID}::contracts::level`,
+      arguments: [tx.object(HERO_ID)]
+    });
+
+    try {
+      const { bytes, signature } = await walletAdapter.signTransaction(tx as any, {});
+
+      const executedTx = await walletAdapter.executeTransaction({ bytes, signature });
+
+      console.log('executedTx: ', executedTx);
+
+      return executedTx;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getSomeVector = async () => {
+    const tx = new Transaction();
+
+    tx.moveCall({
+      target: `${PACKAGE_ID}::contracts::some_vector`,
+      arguments: []
+    });
+
+    try {
+      const { bytes, signature } = await walletAdapter.signTransaction(tx as any, {});
+
+      const executedTx = await walletAdapter.executeTransaction({ bytes, signature });
+
+      console.log('executedTx: ', executedTx);
+
+      return executedTx;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 </script>
 
 <h1>Welcome to SvelteKit</h1>
@@ -78,3 +120,5 @@
 <button onclick={newHero}> New hero </button>
 <button onclick={addSwordsman}> Add swordsman </button>
 <button onclick={getArmy}> Get army </button>
+<button onclick={getLevel}> Get level </button>
+<button onclick={getSomeVector}> Get some vector </button>

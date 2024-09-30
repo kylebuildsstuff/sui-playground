@@ -44,6 +44,18 @@ public fun army(hero: &Hero): &vector<ArmyUnit> {
     &hero.army  
 }
 
+public fun some_vector(): vector<u8> {
+    let v = vector<u8>[1, 2, 3];
+
+    v
+}
+
+public fun level(hero: &Hero): u8 {
+    hero.level
+}
+
+// How about returning any field on object? plain vector? plain int?
+
 // public fun army(hero: &Hero): &ObjectBag {
 //     // Doesn't work... can't return a field of an object like this.
 //     // Need to return something bigger, and then parse that out, like dynamic fields
