@@ -6,8 +6,8 @@ use sui::object_bag::{Self, ObjectBag};
 public struct Hero has key, store {
     id: UID,
     level: u8,
-    // army: ObjectBag
-    army: vector<ArmyUnit>
+    army: vector<ArmyUnit>,
+    thing: ArmyUnit,
 }
 
 public struct ArmyUnit has key, store {
@@ -25,7 +25,17 @@ public fun new_hero(ctx: &mut TxContext): Hero {
     let hero = Hero {
         id: object::new(ctx),
         level: 1,
-        army: vector::empty<ArmyUnit>()
+        army: vector::empty<ArmyUnit>(),
+        thing: ArmyUnit { 
+            id: object::new(ctx),
+            tier: 1,
+            quantity: 1,
+            name: string::utf8(b"Thinger"),
+            attack: 2,
+            defence: 1,
+            health: 1,
+            initiative: 1 
+        }
     };
 
     hero

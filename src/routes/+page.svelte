@@ -6,6 +6,8 @@
   } from '@builders-of-stuff/svelte-sui-wallet-adapter';
   import { Transaction } from '@mysten/sui/transactions';
 
+  import { Button } from '$lib/components/ui/button';
+
   const newHero = async () => {
     const tx = new Transaction();
 
@@ -112,13 +114,29 @@
       console.log(error);
     }
   };
+
+  const getObject = async (objectId: string) => {
+    const object = await walletAdapter.suiClient.getObject({
+      id: objectId,
+      options: {
+        showContent: true,
+        showDisplay: true,
+        showType: true,
+        showOwner: true
+      }
+    });
+
+    console.log('object: ', object);
+    return object;
+  };
 </script>
 
 <h1>Welcome to SvelteKit</h1>
 
 <ConnectButton {walletAdapter} />
-<button onclick={newHero}> New hero </button>
-<button onclick={addSwordsman}> Add swordsman </button>
-<button onclick={getArmy}> Get army </button>
-<button onclick={getLevel}> Get level </button>
-<button onclick={getSomeVector}> Get some vector </button>
+<Button onclick={newHero}>New hero</Button>
+<Button onclick={addSwordsman}>Add swordsman</Button>
+<Button onclick={getArmy}>Get army</Button>
+<Button onclick={getLevel}>Get level</Button>
+<Button onclick={getSomeVector}>Get some vector</Button>
+<Button onclick={() => getObject(HERO_ID)}>Get object</Button>
