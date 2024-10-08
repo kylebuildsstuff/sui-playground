@@ -7,7 +7,16 @@ public struct Hero has key, store {
     id: UID,
     level: u8,
     army: vector<ArmyUnit>,
-    battle_history: vector<BattleHistory>
+    battle_history: vector<BattleHistory>,
+    resources: Resources
+}
+
+public struct Resources has store {
+    wood: u8,
+    stone: u8,
+    ore: u8,
+    water: u8,
+    food: u8,
 }
 
 public struct BattleHistory has store {
@@ -21,17 +30,43 @@ public struct ArmyUnit has key, store {
     quantity: u8,
     name: String,
     attack: u8,
-    defence:u8,
+    defence: u8,
     health: u8,
     initiative: u8,
 }
+
+public struct Unit has key, store {
+    id: UID,
+    name: String,
+}
+
+public fun match_or_not(is_bool: bool, ctx: &mut TxContext): Unit { 
+    match (is_bool) {
+        true => Unit { id: object::new(ctx), name: string::utf8(b"Swordsman") },
+        false => Unit { id: object::new(ctx), name: string::utf8(b"Archer") },
+    }
+}
+
+// public fun match_or_not_2(numby: u64, ctx: &mut TxContext): Unit { 
+//     match (numby) {
+//         20 => Unit { id: object::new(ctx), name: string::utf8(b"Swordsman") },
+//         40 => Unit { id: object::new(ctx), name: string::utf8(b"Archer") },
+//     } 
+// }
 
 public fun new_hero(ctx: &mut TxContext): Hero {
     let hero = Hero {
         id: object::new(ctx),
         level: 1,
         army: vector::empty<ArmyUnit>(),
-        battle_history: vector::empty<BattleHistory>()
+        battle_history: vector::empty<BattleHistory>(),
+        resources: Resources {
+            wood: 0,
+            stone: 0,
+            ore: 0,
+            water: 0,
+            food: 0,
+        }
     };
 
     hero

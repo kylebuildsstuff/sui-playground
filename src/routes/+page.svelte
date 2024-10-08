@@ -150,15 +150,40 @@
       console.log(error);
     }
   };
+
+  const match_test = async () => {
+    const tx = new Transaction();
+
+    const [thing] = await tx.moveCall({
+      target: `${PACKAGE_ID}::contracts::match_or_not`,
+      arguments: [tx.pure.bool(false)]
+    });
+
+    tx.transferObjects([thing], walletAdapter?.currentAccount?.address as any);
+
+    try {
+      const { bytes, signature } = await walletAdapter.signTransaction(tx as any, {});
+
+      const executedTx = await walletAdapter.executeTransaction({ bytes, signature });
+
+      console.log('executedTx: ', executedTx);
+
+      return executedTx;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 </script>
 
 <h1>Welcome to SvelteKit</h1>
 
 <ConnectButton {walletAdapter} />
+
 <Button onclick={newHero}>New hero</Button>
 <Button onclick={addSwordsman}>Add swordsman</Button>
 <Button onclick={getArmy}>Get army</Button>
 <Button onclick={getLevel}>Get level</Button>
 <Button onclick={getSomeVector}>Get some vector</Button>
-<Button onclick={() => getObject(HERO_ID)}>Get object</Button>
+<Button onclick={() => getObject(HERO_ID)}>Get hero</Button>
 <Button onclick={battle}>Battle</Button>
+<Button onclick={match_test}>Match</Button>
