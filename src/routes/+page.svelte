@@ -12,7 +12,7 @@
     const tx = new Transaction();
 
     const [hero] = tx.moveCall({
-      target: `${PACKAGE_ID}::contracts::new_hero`,
+      target: `${PACKAGE_ID}::suiscape::new_hero`,
       arguments: []
     });
 
@@ -35,7 +35,7 @@
     const tx = new Transaction();
 
     tx.moveCall({
-      target: `${PACKAGE_ID}::contracts::add_swordsman`,
+      target: `${PACKAGE_ID}::suiscape::add_swordsman`,
       arguments: [tx.object(HERO_ID)]
     });
 
@@ -56,7 +56,7 @@
     const tx = new Transaction();
 
     tx.moveCall({
-      target: `${PACKAGE_ID}::contracts::army`,
+      target: `${PACKAGE_ID}::suiscape::army`,
       arguments: [tx.object(HERO_ID)]
     });
 
@@ -77,7 +77,7 @@
     const tx = new Transaction();
 
     tx.moveCall({
-      target: `${PACKAGE_ID}::contracts::level`,
+      target: `${PACKAGE_ID}::suiscape::level`,
       arguments: [tx.object(HERO_ID)]
     });
 
@@ -98,7 +98,7 @@
     const tx = new Transaction();
 
     tx.moveCall({
-      target: `${PACKAGE_ID}::contracts::some_vector`,
+      target: `${PACKAGE_ID}::suiscape::some_vector`,
       arguments: []
     });
 
@@ -134,7 +134,7 @@
     const tx = new Transaction();
 
     tx.moveCall({
-      target: `${PACKAGE_ID}::contracts::battle`,
+      target: `${PACKAGE_ID}::suiscape::battle`,
       arguments: [tx.object(HERO_ID)]
     });
 
@@ -155,7 +155,7 @@
     const tx = new Transaction();
 
     const [thing] = await tx.moveCall({
-      target: `${PACKAGE_ID}::contracts::match_or_not`,
+      target: `${PACKAGE_ID}::suiscape::match_or_not`,
       arguments: [tx.pure.bool(false)]
     });
 
@@ -175,15 +175,19 @@
   };
 </script>
 
-<h1>Welcome to SvelteKit</h1>
+<div class="my-4">
+  <ConnectButton {walletAdapter} />
+  <!-- <a href="/escrows"> Escrows</a> -->
+  <a href="/kiosks">
+    <Button variant="outline">Kiosks</Button>
+  </a>
+</div>
 
-<ConnectButton {walletAdapter} />
-
-<Button onclick={newHero}>New hero</Button>
-<Button onclick={addSwordsman}>Add swordsman</Button>
-<Button onclick={getArmy}>Get army</Button>
-<Button onclick={getLevel}>Get level</Button>
-<Button onclick={getSomeVector}>Get some vector</Button>
-<Button onclick={() => getObject(HERO_ID)}>Get hero</Button>
-<Button onclick={battle}>Battle</Button>
-<Button onclick={match_test}>Match</Button>
+<Button variant="secondary" onclick={newHero}>New hero</Button>
+<Button variant="secondary" onclick={addSwordsman}>Add swordsman</Button>
+<Button variant="secondary" onclick={getArmy}>Get army</Button>
+<Button variant="secondary" onclick={getLevel}>Get level</Button>
+<Button variant="secondary" onclick={getSomeVector}>Get some vector</Button>
+<Button variant="secondary" onclick={() => getObject(HERO_ID)}>Get hero</Button>
+<Button variant="secondary" onclick={battle}>Battle</Button>
+<Button variant="secondary" onclick={match_test}>Match</Button>

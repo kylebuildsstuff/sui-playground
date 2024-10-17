@@ -1,4 +1,4 @@
-module contracts::contracts;
+module contracts::suiscape;
 
 use std::string::{Self, String};
 use sui::object_bag::{Self, ObjectBag};
