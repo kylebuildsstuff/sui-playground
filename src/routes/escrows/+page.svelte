@@ -9,3 +9,4 @@
   <a href="/"> Home</a>
   <ConnectButton {walletAdapter} />
 </div>
+|
