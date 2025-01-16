@@ -181,6 +181,9 @@
   <a href="/kiosks">
     <Button variant="outline">Kiosks</Button>
   </a>
+  <a href="/move">
+    <Button variant="outline">Move</Button>
+  </a>
 </div>
 
 <Button variant="secondary" onclick={newHero}>New hero</Button>
